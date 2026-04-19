@@ -69,9 +69,7 @@ curl -H "Authorization: Bearer $TOKEN" http://localhost:8080/api/v1/products
 mvn clean package -DskipTests
 
 # Step 2: Run SonarQube scan (trainer provides SONAR_IP and TOKEN)
-mvn sonar:sonar \
-  -Dsonar.host.url=http://SONAR_IP:9000 \
-  -Dsonar.token=YOUR_TOKEN
+mvn sonar:sonar  -Dsonar.host.url=http://SONAR_IP:9000 -Dsonar.token=YOUR_TOKEN
 
 # Open dashboard → http://SONAR_IP:9000/dashboard?id=sbi-lms
 # Find two Critical issues:
@@ -92,9 +90,8 @@ mvn sonar:sonar \
 #   Uncomment the maskPiiIfOfficer line
 
 # Step 5: Re-scan
-mvn clean package -DskipTests sonar:sonar \
-  -Dsonar.host.url=http://SONAR_IP:9000 \
-  -Dsonar.token=YOUR_TOKEN
+mvn clean package -DskipTests sonar:sonar -Dsonar.host.url=http://SONAR_IP:9000 -Dsonar.token=YOUR_TOKEN
+
 # Expected: Quality Gate PASSED, 0 Critical issues
 ```
 
@@ -226,7 +223,9 @@ docker compose down && docker compose up -d
 
 ```bash
 # Install detect-secrets and set up pre-commit hook
-chmod +x setup-hooks.sh && ./setup-hooks.sh
+chmod +x setup-hooks.sh && ./setup-hooks.sh 
+OR 
+"C:\Program Files\Git\bin\sh.exe" setup-hooks.sh
 
 # Test the hook
 echo 'password=SuperSecret123' > test-secret.txt
