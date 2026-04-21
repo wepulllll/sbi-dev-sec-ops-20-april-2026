@@ -11,7 +11,8 @@
 
 # ── Stage 1: Build ────────────────────────────────────────────
 # Full JDK + Maven used only here — never reaches the final image
-FROM eclipse-temurin:17-jdk-alpine AS build
+# FROM eclipse-temurin:17-jdk-alpine AS build
+FROM maven:3.9.9-eclipse-temurin-17-alpine AS build
 WORKDIR /workspace
 
 # Copy pom.xml first — dependency layer cached separately from source

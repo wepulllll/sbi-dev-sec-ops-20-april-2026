@@ -11,7 +11,7 @@
 # ╚══════════════════════════════════════════════════════════════╝
 
 # Problem 1: full JDK — 600MB+, includes compilers, debuggers, tools
-FROM openjdk:17-jdk
+FROM eclipse-temurin:17-jdk
 
 # Problem 2: running as root (uid 0) — if app is compromised, attacker has root
 WORKDIR /app
