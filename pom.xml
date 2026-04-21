@@ -26,9 +26,9 @@
         <sonar.projectName>SBI Loan Management System</sonar.projectName>
         <sonar.java.source>17</sonar.java.source>
         <sonar.exclusions>**/test/**,**/generated/**</sonar.exclusions>
-        <tomcat.version>10.1.35</tomcat.version>
-        <spring-security.version>6.3.8</spring-security.version>
-        <spring-framework.version>6.1.14</spring-framework.version>
+        <tomcat.version>10.1.54</tomcat.version>
+        <spring-security.version>6.5.9</spring-security.version>
+        <spring-framework.version>6.2.11</spring-framework.version>
     </properties>
 
 
