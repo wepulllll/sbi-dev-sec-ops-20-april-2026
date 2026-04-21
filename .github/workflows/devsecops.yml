@@ -112,12 +112,19 @@ jobs:
           sudo apt-get install -y trivy
 
       - name: Trivy — image CVE scan (blocks on CRITICAL)
+        # run: |
+        #   trivy image \
+        #     --severity HIGH,CRITICAL \
+        #     --exit-code 1 \
+        #     --format sarif \
+        #     --output trivy-results.sarif \
+        #     lms:${{ github.sha }}
         run: |
-          trivy image \
+          docker run --rm \
+            -v /var/run/docker.sock:/var/run/docker.sock \
+            aquasec/trivy image \
             --severity HIGH,CRITICAL \
             --exit-code 1 \
-            --format sarif \
-            --output trivy-results.sarif \
             lms:${{ github.sha }}
 
       - name: Trivy — Dockerfile misconfiguration scan
@@ -138,13 +145,19 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install Checkov
-        run: pip install checkov
+        run: |
+          python -m pip install --upgrade pip
+          pip install checkov
 
       - name: Checkov — Terraform scan (standard policies)
+        # run: |
+        #   checkov -d terraform/lms \
+        #     --compact \
+        #     --output junitxml > checkov-results.xml || true
         run: |
-          checkov -d terraform/lms \
+          python -m checkov -d terraform/lms \
             --compact \
-            --output junitxml > checkov-results.xml || true
+            --output junitxml > checkov-results.xml
 
       - name: Checkov — with custom SBI policy (CKV_SBI_001)
         run: |
