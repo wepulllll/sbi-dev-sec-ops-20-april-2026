@@ -205,12 +205,24 @@ jobs:
         #     -f openapi \
         #     -r zap-report.html \
         #     -I   # do not fail build on alerts — review report manually in lab
+        # run: |
+        #   mkdir -p zap-reports
+
+        #   docker run --rm \
+        #     --network=host \
+        #     -v ${{ github.workspace }}/zap-reports:/zap/wrk \
+        #     ghcr.io/zaproxy/zaproxy:stable \
+        #     zap-api-scan.py \
+        #     -t http://localhost:8080/v3/api-docs \
+        #     -f openapi \
+        #     -r zap-report.html \
+        #     -I
         run: |
           mkdir -p zap-reports
 
           docker run --rm \
             --network=host \
-            -v ${{ github.workspace }}/zap-reports:/zap/wrk \
+            -v $PWD/zap-reports:/zap/wrk \
             ghcr.io/zaproxy/zaproxy:stable \
             zap-api-scan.py \
             -t http://localhost:8080/v3/api-docs \
@@ -219,7 +231,7 @@ jobs:
             -I
 
       - uses: actions/upload-artifact@v4
-        # if: always()
+        if: always()
         with:
           # name: zap-report
           # path: zap-report.html

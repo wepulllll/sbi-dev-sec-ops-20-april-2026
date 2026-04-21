@@ -26,9 +26,6 @@
         <sonar.projectName>SBI Loan Management System</sonar.projectName>
         <sonar.java.source>17</sonar.java.source>
         <sonar.exclusions>**/test/**,**/generated/**</sonar.exclusions>
-        <tomcat.version>10.1.54</tomcat.version>
-        <spring-security.version>6.5.9</spring-security.version>
-        <spring-framework.version>6.2.11</spring-framework.version>
     </properties>
 
 
@@ -73,7 +70,7 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-            <version>2.3.0</version>
+            <version>2.5.0</version>
         </dependency>
 
         <!-- JWT -->
