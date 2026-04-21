@@ -7,7 +7,7 @@
 # ║  attack surface.                                            ║
 # ║                                                              ║
 # ║  Build:  docker build -f Dockerfile.insecure -t lms:insecure .  ║
-# ║  Scan:   trivy image --severity HIGH,CRITICAL lms:insecure  ║
+# ║  Scan:   trivy image --severity HIGH,CRITICAL lms:insecure  
 # ╚══════════════════════════════════════════════════════════════╝
 
 # Problem 1: full JDK — 600MB+, includes compilers, debuggers, tools
