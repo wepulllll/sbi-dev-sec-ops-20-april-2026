@@ -165,7 +165,7 @@ jobs:
           name: checkov-results
           path: checkov-results.xml
 
-          
+
   # ── Stage 6: DAST — OWASP ZAP ───────────────────────────────────────────────
   dast:
     name: DAST — OWASP ZAP
@@ -197,20 +197,34 @@ jobs:
           done
 
       - name: DAST — ZAP API scan (OpenAPI auto-discovery)
+        # run: |
+        #   docker run --network=host \
+        #     ghcr.io/zaproxy/zaproxy:stable \
+        #     zap-api-scan.py \
+        #     -t http://localhost:8080/v3/api-docs \
+        #     -f openapi \
+        #     -r zap-report.html \
+        #     -I   # do not fail build on alerts — review report manually in lab
         run: |
-          docker run --network=host \
+          mkdir -p zap-reports
+
+          docker run --rm \
+            --network=host \
+            -v ${{ github.workspace }}/zap-reports:/zap/wrk \
             ghcr.io/zaproxy/zaproxy:stable \
             zap-api-scan.py \
             -t http://localhost:8080/v3/api-docs \
             -f openapi \
             -r zap-report.html \
-            -I   # do not fail build on alerts — review report manually in lab
+            -I
 
       - uses: actions/upload-artifact@v4
-        if: always()
+        # if: always()
         with:
+          # name: zap-report
+          # path: zap-report.html
           name: zap-report
-          path: zap-report.html
+          path: zap-reports/zap-report.html
 
       - name: Stop LMS container
         if: always()
