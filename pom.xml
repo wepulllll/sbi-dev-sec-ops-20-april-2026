@@ -21,8 +21,8 @@
         <java.version>17</java.version>
         <!-- SonarQube configuration — update SONAR_SERVER_IP before scanning -->
         <sonar.organization>wepulllll</sonar.organization>
-        <sonar.host.url>http://SONAR_SERVER_IP:9000</sonar.host.url>
-        <sonar.projectKey>sbi-lms</sonar.projectKey>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <sonar.projectKey>wepulllll_sbi-dev-sec-ops-20-april-2026</sonar.projectKey>
         <sonar.projectName>SBI Loan Management System</sonar.projectName>
         <sonar.java.source>17</sonar.java.source>
         <sonar.exclusions>**/test/**,**/generated/**</sonar.exclusions>
