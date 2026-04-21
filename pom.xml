@@ -28,6 +28,7 @@
         <sonar.exclusions>**/test/**,**/generated/**</sonar.exclusions>
     </properties>
 
+
     <dependencies>
         <!-- Web -->
         <dependency>
